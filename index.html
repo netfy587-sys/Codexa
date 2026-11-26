@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Codexa – Understanding Software: How Apps Are Built, Tested, Updated and Kept Secure</title>
+<meta name="description" content="Codexa is an educational guide to software and IT basics: what software is, how it is planned, built, tested and released, how programming languages differ, and everyday habits for keeping your software secure.">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%99%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+:root{--blue:#0b5fff;--blue2:#0846c4;--lime:#b8f34a;--ink:#0d1117;--gr:#161b22;--gr2:#21262d;--bg:#f6f8fa;--txt:#1b2129;--mut:#586270;--w:#fff;--line:#d9dee5}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,sans-serif;color:var(--txt);background:var(--bg);line-height:1.75;font-size:17.5px}
+h1,h2,h3,.btn,.lab,.step b{font-family:'Helvetica Neue','Segoe UI',Arial,sans-serif}
+code,.mono{font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace}
+a{color:var(--blue)}
+img{max-width:100%;display:block}
+.wrap{width:100%;max-width:1220px;margin:0 auto;padding:0 26px}
+header{background:var(--ink);position:sticky;top:0;z-index:10;border-bottom:1px solid #2a313a}
+header .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding-top:15px;padding-bottom:15px}
+.logo{font:800 25px 'Helvetica Neue','Segoe UI',Arial,sans-serif;color:#fff;text-decoration:none;letter-spacing:-.4px}
+.logo b{color:var(--lime)}
+nav a{color:#aab4c2;text-decoration:none;margin-left:21px;font-size:14.5px}
+nav a:hover{color:#fff}
+.hero{position:relative;background:#101826 url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=70') center/cover}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(95deg,rgba(8,13,22,.94) 45%,rgba(8,13,22,.55))}
+.hero .wrap{position:relative;padding-top:110px;padding-bottom:100px}
+.lab{display:inline-block;font-family:Consolas,Menlo,monospace;color:var(--lime);font-size:14px;letter-spacing:.5px;margin-bottom:20px}
+h1{font-size:clamp(34px,5vw,58px);line-height:1.1;color:#fff;max-width:800px;margin-bottom:22px;letter-spacing:-1px}
+h1 em{font-style:normal;color:var(--lime)}
+.hero p{max-width:620px;font-size:19.5px;color:#c3ccd8;margin-bottom:30px}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:14px 30px;border-radius:6px;font-size:16px}
+.btn:hover{background:#2d75ff}
+.flow{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.flow span{font:600 13.5px Consolas,Menlo,monospace;color:#d6e2ff;border:1px solid #34507f;background:rgba(11,95,255,.16);padding:6px 14px;border-radius:5px}
+section{padding:80px 0}
+.white{background:var(--w)}
+.gray{background:#eef1f5}
+.dark{background:var(--gr);color:#c4ccd7}
+.dark h2,.dark h3{color:#fff}
+h2{font-size:clamp(27px,3.3vw,37px);line-height:1.2;color:var(--ink);margin-bottom:18px;letter-spacing:-.4px}
+h3{font-size:19.5px;color:var(--blue);margin:4px 0 8px}
+.lead{max-width:800px;color:var(--mut);font-size:19px;margin-bottom:34px}
+p+p{margin-top:15px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+.duo img{width:100%;height:420px;object-fit:cover;border-radius:10px;background:#c6cfdb;border:1px solid var(--line);box-shadow:0 14px 34px rgba(13,17,23,.18)}
+.duo.rev img{order:-1}
+.types{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.ty{background:var(--w);border:1px solid var(--line);border-radius:10px;padding:26px 22px;border-top:4px solid var(--blue)}
+.ty p{font-size:15.8px;color:var(--mut);line-height:1.68}
+.ty small{display:block;font:600 12.5px Consolas,Menlo,monospace;color:var(--blue2);margin-top:12px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{border:1px solid #333c48;background:var(--gr2);border-radius:10px;padding:28px 24px}
+.step b{display:block;font-size:13px;letter-spacing:1.8px;text-transform:uppercase;color:var(--lime);margin-bottom:6px}
+.step p{font-size:16px;color:#bcc5d1;line-height:1.7}
+.langs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.lg{background:var(--w);border:1px solid var(--line);border-radius:10px;padding:24px}
+.lg p{font-size:16px;color:var(--mut);line-height:1.7}
+.lg code{display:inline-block;background:#e9efff;color:var(--blue2);padding:2px 10px;border-radius:4px;font-size:13.5px;margin-top:10px}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.gal img{width:100%;height:230px;object-fit:cover;border-radius:10px;background:#c6cfdb}
+.qa{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.qb{background:var(--w);border:1px solid var(--line);border-left:6px solid var(--lime);border-radius:10px;padding:26px}
+.qb p{font-size:16.3px;color:var(--mut);line-height:1.7}
+.sec{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 40px}
+.sc{display:flex;gap:16px;padding-bottom:16px;border-bottom:1px solid #313a46}
+.sc i{flex:0 0 34px;height:34px;border-radius:6px;background:var(--lime);color:#14200a;font:800 15px Consolas,Menlo,monospace;font-style:normal;display:flex;align-items:center;justify-content:center;margin-top:3px}
+.sc p{font-size:16.3px;color:#c4ccd7;line-height:1.7;margin:0}
+.faq{max-width:900px;margin:0 auto}
+.faq details{background:var(--w);border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:8px;padding:17px 22px;margin-bottom:13px}
+.faq summary{cursor:pointer;font:700 17.5px 'Helvetica Neue','Segoe UI',Arial,sans-serif;color:var(--ink)}
+.faq p{margin-top:11px;color:var(--mut);font-size:16.3px}
+.disc{background:#fff8e3;border:1px solid #ead9a0;border-radius:10px;padding:28px 30px}
+.disc h2{font-size:23px;margin-bottom:10px}
+.disc p{font-size:15.8px;color:#4a4326;line-height:1.7}
+footer{background:#080b10;color:#9aa5b4;padding:46px 0 30px;font-size:15px}
+footer a{color:#e3e9f1;margin-right:20px}
+footer p{margin-top:14px;max-width:900px;line-height:1.6}
+@media(max-width:1000px){.duo,.types,.steps,.langs,.gal,.qa,.sec{grid-template-columns:1fr}.duo img{height:290px}.duo.rev img{order:0}section{padding:54px 0}nav a{margin:0 14px 0 0}.hero .wrap{padding-top:64px;padding-bottom:60px}.hero:before{background:rgba(8,13,22,.84)}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="wrap">
+<a class="logo" href="#top">Code<b>xa</b></a>
+<nav>
+<a href="#what">What is software</a>
+<a href="#types">Types</a>
+<a href="#lifecycle">How it's built</a>
+<a href="#languages">Languages</a>
+<a href="#safe">Staying secure</a>
+<a href="#faq">FAQ</a>
+</nav>
+</div>
+</header>
+
+<main id="top">
+
+<div class="hero">
+<div class="wrap">
+<span class="lab">// software &amp; IT basics, explained</span>
+<h1>Codexa: See How Software Is <em>Built, Tested and Kept Secure</em></h1>
+<p>Every app, website and system you use started as an idea and a plan. Codexa explains in plain language what software is, how teams create it, how programming languages differ and which everyday habits help keep your own devices safer.</p>
+<a class="btn" href="#what">Start Reading</a>
+<div class="flow"><span>plan</span><span>design</span><span>build</span><span>test</span><span>release</span><span>maintain</span></div>
+</div>
+</div>
+
+<section class="white" id="what">
+<div class="wrap duo">
+<div>
+<h2>What Exactly Is Software?</h2>
+<p>Hardware is the physical part of a computer, such as the screen, processor and memory. Software is the set of instructions that tells that hardware what to do. When you open a messaging app, edit a photo or check the weather, software is turning your taps and clicks into results.</p>
+<p>Software surrounds us far beyond phones and laptops. It runs inside cars, home appliances, medical equipment, traffic systems and the web services we use every day. Because it is so widespread, a basic understanding of how it works is useful for everyone, not only for people who work in technology.</p>
+<p>Codexa is written for curious beginners, students and general readers. It aims to make IT concepts approachable without requiring any previous technical background.</p>
+</div>
+<img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1000&q=70" alt="A person using a laptop with software on the screen" width="1000" height="420" loading="lazy">
+</div>
+</section>
+
+<section class="gray" id="types">
+<div class="wrap">
+<h2>The Main Kinds of Software</h2>
+<p class="lead">Software comes in many forms. These four groups are a helpful way to organise what you encounter.</p>
+<div class="types">
+<div class="ty"><h3>Operating Systems</h3><p>The core software that manages a device and lets other programs run. It handles files, memory, connected devices and the basic interface you interact with.</p><small>examples: desktop and mobile systems</small></div>
+<div class="ty"><h3>Applications</h3><p>Programs built for a specific task, such as writing documents, browsing the web, editing images or sending messages.</p><small>examples: browsers, editors, chat apps</small></div>
+<div class="ty"><h3>Web and Cloud Services</h3><p>Software that runs on remote servers and is accessed through a browser or app. Your data and the processing often live online.</p><small>examples: email, online storage</small></div>
+<div class="ty"><h3>Embedded Software</h3><p>Programs built into devices to control specific functions, often invisibly, in things like appliances, vehicles and wearables.</p><small>examples: smart devices, controllers</small></div>
+</div>
+</div>
+</section>
+
+<section class="dark" id="lifecycle">
+<div class="wrap">
+<h2>How Software Gets Built: The Lifecycle</h2>
+<p class="lead" style="color:#b7c0cc">Teams follow different methods, but most software passes through the same broad stages. Many teams repeat these in short cycles rather than once.</p>
+<div class="steps">
+<div class="step"><b>01 · Plan</b><h3>Understand the need</h3><p>Teams decide what problem the software should solve, who will use it and what it must do. Clear goals at this stage prevent confusion later.</p></div>
+<div class="step"><b>02 · Design</b><h3>Sketch the solution</h3><p>Designers and engineers outline how the software will look and how its parts will fit together, from screens to data storage.</p></div>
+<div class="step"><b>03 · Build</b><h3>Write the code</h3><p>Developers turn the design into working code, usually in small pieces, using version control to track every change and collaborate safely.</p></div>
+<div class="step"><b>04 · Test</b><h3>Find problems early</h3><p>Testing checks that features work, that edge cases are handled and that changes have not broken anything else. It combines automated checks and human review.</p></div>
+<div class="step"><b>05 · Release</b><h3>Deliver to users</h3><p>The software is made available to users, often gradually, so teams can watch for issues and gather feedback.</p></div>
+<div class="step"><b>06 · Maintain</b><h3>Improve and protect</h3><p>After release, teams fix bugs, patch security issues and add improvements. Maintenance often continues for as long as the software is used.</p></div>
+</div>
+</div>
+</section>
+
+<section class="white" id="languages">
+<div class="wrap">
+<h2>Programming Languages: Different Tools for Different Jobs</h2>
+<p class="lead">A programming language is a way of giving instructions to a computer. No single language is best for everything. The table below is a general overview, not a ranking.</p>
+<div class="langs">
+<div class="lg"><h3>Python</h3><p>Known for readable syntax. Often used for automation, data analysis, scientific work and as a first language for learners.</p><code>automation · data · scripting</code></div>
+<div class="lg"><h3>JavaScript</h3><p>The language of web browsers, also used on servers. It makes websites interactive and powers many modern web apps.</p><code>web · front-end · servers</code></div>
+<div class="lg"><h3>Java and C#</h3><p>Widely used for large business systems, Android apps and enterprise software, valued for structure and long-term maintainability.</p><code>enterprise · mobile · backends</code></div>
+<div class="lg"><h3>C and C++</h3><p>Close to the hardware and very fast. Often used for operating systems, games, embedded devices and performance-critical programs.</p><code>systems · games · embedded</code></div>
+<div class="lg"><h3>SQL</h3><p>A language for working with databases: storing, searching and organising large amounts of structured information.</p><code>databases · queries · reports</code></div>
+<div class="lg"><h3>Swift and Kotlin</h3><p>Modern languages commonly used to build apps for mobile platforms, designed to be safer and more concise.</p><code>mobile apps</code></div>
+</div>
+<div class="gal">
+<img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=70" alt="Source code displayed on a computer screen" width="800" height="230" loading="lazy">
+<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=70" alt="Colleagues working together on laptops" width="800" height="230" loading="lazy">
+<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=70" alt="A dashboard showing software performance charts" width="800" height="230" loading="lazy">
+</div>
+</div>
+</section>
+
+<section class="gray" id="quality">
+<div class="wrap duo rev">
+<img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=70" alt="Rows of servers in a data centre" width="1000" height="420" loading="lazy">
+<div>
+<h2>Behind the Scenes: Quality and Reliability</h2>
+<p>Reliable software does not happen by accident. Good teams build in habits that catch problems early and make change safer.</p>
+<div class="qa" style="grid-template-columns:1fr;gap:16px;margin-top:18px">
+<div class="qb"><h3>Version Control</h3><p>Tools such as Git record every change to the code, who made it and why, so teams can work together and roll back mistakes.</p></div>
+<div class="qb"><h3>Testing</h3><p>Automated tests run repeatedly to confirm that existing features still work after changes. Manual testing and user feedback add another layer.</p></div>
+<div class="qb"><h3>Code Review</h3><p>Colleagues read each other's code before it is accepted. This spreads knowledge and catches errors that one person might miss.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="dark" id="safe">
+<div class="wrap">
+<h2>Everyday Habits for Safer Software Use</h2>
+<p class="lead" style="color:#b7c0cc">Good security is largely about simple routines. These general habits apply to most personal devices. No habit can guarantee complete protection.</p>
+<div class="sec">
+<div class="sc"><i>01</i><p><strong>Install updates.</strong> Updates often fix security weaknesses. Turn on automatic updates where available and restart when asked.</p></div>
+<div class="sc"><i>02</i><p><strong>Use strong, unique passwords.</strong> Avoid reusing passwords across accounts. A reputable password manager can help you create and store them.</p></div>
+<div class="sc"><i>03</i><p><strong>Enable two-step verification.</strong> Where offered, a second step makes it harder for others to access your accounts.</p></div>
+<div class="sc"><i>04</i><p><strong>Download from official sources.</strong> Use official app stores and the publisher's own website, and be wary of unexpected downloads or attachments.</p></div>
+<div class="sc"><i>05</i><p><strong>Beware of phishing.</strong> Be cautious with unexpected messages asking for passwords, payments or urgent action. Check the sender and avoid clicking suspicious links.</p></div>
+<div class="sc"><i>06</i><p><strong>Back up important files.</strong> Keep copies of important data in more than one place so that loss, damage or a failed device is less painful.</p></div>
+</div>
+</div>
+</section>
+
+<section class="white" id="faq">
+<div class="wrap faq">
+<h2 style="text-align:center">Frequently Asked Questions</h2>
+<details><summary>What is Codexa?</summary><p>Codexa is an informational website that provides general educational content about software and IT concepts. It is not a software vendor, training provider or technical support service.</p></details>
+<details><summary>What is the difference between a program, an app and software?</summary><p>"Software" is the broad term for any computer instructions. A program is a specific piece of software, and "app" usually means a program designed for a particular task, often on a phone or tablet.</p></details>
+<details><summary>Do I need to code to work in IT?</summary><p>Not always. IT includes many roles such as support, design, testing, project management and data work. Some use code regularly, while others use it little or not at all.</p></details>
+<details><summary>Why do apps need so many updates?</summary><p>Updates can fix bugs, close security gaps, add features and keep software compatible with newer devices and systems.</p></details>
+<details><summary>Is open-source software safe?</summary><p>Open-source software has publicly available code, which many people can review. Safety depends on how well it is maintained and where you obtain it, so use official sources and keep it updated.</p></details>
+<details><summary>Does Codexa sell software, courses or IT services?</summary><p>No. This page is an educational guide only and does not sell software, courses, security products or services.</p></details>
+</div>
+</section>
+
+<section class="gray">
+<div class="wrap">
+<div class="disc" id="disclaimer">
+<h2>Disclaimer</h2>
+<p>The information on this page is provided for general educational and informational purposes only. Technology changes quickly, and Codexa makes no guarantee that the content is complete, current or suitable for any specific situation. Nothing here is professional IT, cybersecurity, engineering, legal or business advice, and following the habits described cannot guarantee protection against all threats or data loss. Language and tool examples are illustrative and do not represent rankings or recommendations. Download software only from trusted sources, follow official documentation and consult a qualified professional for important technical or security decisions. Images are used for illustration only. Any third-party names mentioned belong to their respective owners. You use this information at your own discretion and risk. Please also read our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms &amp; Conditions</a>.</p>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="wrap">
+<strong style="color:#fff;font-size:20px">Codexa</strong>
+<p><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a><a href="#disclaimer">Disclaimer</a></p>
+<p>&copy; 2026 Codexa. All rights reserved. This website provides general educational information about software and IT and does not sell products or services.</p>
+</div>
+</footer>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Codexa – Understanding Software","description":"Educational guide to what software is, how it is built, tested and maintained, programming languages overview and everyday security habits.","inLanguage":"en"}
+</script>
+</body>
+</html>
